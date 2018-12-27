@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+const helloPrefix = "Hello"
+
 // HelloWorld prints "Hello World!"
 func HelloWorld() string {
 	return "Hello World!"
@@ -9,7 +11,7 @@ func HelloWorld() string {
 
 // Hello prints "Hello [name]!"
 func Hello(name string) string {
-	return fmt.Sprintf("Hello %s!", name)
+	return fmt.Sprintf("%s %s!", helloPrefix, name)
 }
 
 func main() {
