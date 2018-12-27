@@ -11,6 +11,9 @@ func HelloWorld() string {
 
 // Hello prints "Hello [name]!"
 func Hello(name string) string {
+	if name == "" {
+		return fmt.Sprintf("%s!", helloPrefix)
+	}
 	return fmt.Sprintf("%s %s!", helloPrefix, name)
 }
 
