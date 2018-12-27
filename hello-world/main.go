@@ -2,7 +2,10 @@ package main
 
 import "fmt"
 
+const french = "French"
+const frenchHelloPrefix = "Bonjour"
 const helloPrefix = "Hello"
+const spanish = "Spanish"
 const spanishHelloPrefix = "Hola"
 
 // HelloWorld prints "Hello World!"
@@ -16,8 +19,12 @@ func Hello(name string, language string) string {
 		return fmt.Sprintf("%s!", helloPrefix)
 	}
 
-	if language == "spanish" {
+	if language == "Spanish" {
 		return fmt.Sprintf("%s %s!", spanishHelloPrefix, name)
+	}
+
+	if language == "French" {
+		return fmt.Sprintf("%s %s!", frenchHelloPrefix, name)
 	}
 
 	return fmt.Sprintf("%s %s!", helloPrefix, name)
@@ -25,5 +32,5 @@ func Hello(name string, language string) string {
 
 func main() {
 	fmt.Println(HelloWorld())
-	fmt.Println(Hello("Iqbal", "spanish"))
+	fmt.Println(Hello("Iqbal", "Spanish"))
 }
