@@ -18,15 +18,22 @@ func TestHello(t *testing.T) {
 			t.Errorf("actual: '%s'; expected: `%s`", actual, expected)
 		}
 	}
+
 	t.Run("Hello with non empty parameter", func(t *testing.T) {
-		actual := Hello("name")
+		actual := Hello("name", "")
 		expected := "Hello name!"
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("Hello with empty parameter", func(t *testing.T) {
-		actual := Hello("")
+		actual := Hello("", "")
 		expected := "Hello!"
+		assertCorrectMessage(t, actual, expected)
+	})
+
+	t.Run("Hello in Spanish", func(t *testing.T) {
+		actual := Hello("name", "spanish")
+		expected := "Hola name!"
 		assertCorrectMessage(t, actual, expected)
 	})
 }
