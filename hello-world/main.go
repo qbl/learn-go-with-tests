@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 const helloPrefix = "Hello"
+const spanishHelloPrefix = "Hola"
 
 // HelloWorld prints "Hello World!"
 func HelloWorld() string {
@@ -16,7 +17,7 @@ func Hello(name string, language string) string {
 	}
 
 	if language == "spanish" {
-		return fmt.Sprintf("Hola %s!", name)
+		return fmt.Sprintf("%s %s!", spanishHelloPrefix, name)
 	}
 
 	return fmt.Sprintf("%s %s!", helloPrefix, name)
