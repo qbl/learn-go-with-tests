@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 	t.Run("Sum of five numbers", func(t *testing.T) {
@@ -24,4 +27,13 @@ func TestSum(t *testing.T) {
 			t.Errorf("actual: %d; expected: %d", actual, expected)
 		}
 	})
+}
+
+func TestSumAll(t *testing.T) {
+	actual := SumAll([]int{1, 2}, []int{0, 9})
+	expected := []int{3, 9}
+
+	if !reflect.DeepEqual(actual, expected) {
+		t.Errorf("actual: %d; expected: %d", actual, expected)
+	}
 }
