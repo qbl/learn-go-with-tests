@@ -32,7 +32,7 @@ func TestArea(t *testing.T) {
 		t.Helper()
 		actual := shape.Area()
 		if !cmp.Equal(actual, expected, opt) {
-			t.Errorf("expcted: %f; actual: %f", expected, actual)
+			t.Errorf("expcted: %.2f; actual: %.2f", expected, actual)
 		}
 	}
 
