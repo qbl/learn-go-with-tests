@@ -28,21 +28,19 @@ func TestPerimeter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	t.Run("Area of a rectangle", func(t *testing.T) {
-		actual := rectangle.Area()
-		expected := 100.0
-
-		if actual != expected {
-			t.Errorf("expcted: %f; actual: %f", expected, actual)
-		}
-	})
-
-	t.Run("Area of a circle", func(t *testing.T) {
-		actual := circle.Area()
-		expected := 153.93
-
+	checkArea := func(t *testing.T, shape Shape, expected float64) {
+		t.Helper()
+		actual := shape.Area()
 		if !cmp.Equal(actual, expected, opt) {
 			t.Errorf("expcted: %f; actual: %f", expected, actual)
 		}
+	}
+
+	t.Run("Area of a rectangle", func(t *testing.T) {
+		checkArea(t, rectangle, 100.00)
+	})
+
+	t.Run("Area of a circle", func(t *testing.T) {
+		checkArea(t, circle, 153.93)
 	})
 }

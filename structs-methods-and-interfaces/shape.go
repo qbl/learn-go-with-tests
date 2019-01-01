@@ -2,6 +2,11 @@ package shape
 
 import "math"
 
+// Shape has area
+type Shape interface {
+	Area() float64
+}
+
 // Rectangle has width and height
 type Rectangle struct {
 	Width  float64
