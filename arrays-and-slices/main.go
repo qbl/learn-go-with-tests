@@ -21,5 +21,17 @@ func SumAll(slicesToSum ...[]int) []int {
 	return sum
 }
 
+// SumAllTails accepts any number of slices and returns a slice whose elements are the sum of tails of input slices
+func SumAllTails(slicesToSum ...[]int) []int {
+	var sum []int
+
+	for _, slice := range slicesToSum {
+		tail := slice[1:]
+		sum = append(sum, Sum(tail))
+	}
+
+	return sum
+}
+
 func main() {
 }

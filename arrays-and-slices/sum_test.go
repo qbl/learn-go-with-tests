@@ -37,3 +37,12 @@ func TestSumAll(t *testing.T) {
 		t.Errorf("actual: %d; expected: %d", actual, expected)
 	}
 }
+
+func TestSumAllTails(t *testing.T) {
+	actual := SumAllTails([]int{1, 2}, []int{0, 9})
+	expected := []int{2, 9}
+
+	if !reflect.DeepEqual(actual, expected) {
+		t.Errorf("actual: %d; expected: %d", actual, expected)
+	}
+}
