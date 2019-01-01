@@ -2,8 +2,10 @@ package rectangle
 
 import "testing"
 
+var rectangle = Rectangle{10.0, 10.0}
+
 func TestPerimeter(t *testing.T) {
-	actual := Perimeter(10.0, 10.0)
+	actual := Perimeter(rectangle)
 	expected := 40.0
 
 	if actual != expected {
@@ -12,8 +14,8 @@ func TestPerimeter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	actual := Area(12.0, 6.0)
-	expected := 72.0
+	actual := Area(rectangle)
+	expected := 100.0
 
 	if actual != expected {
 		t.Errorf("expcted: %f; actual: %f", expected, actual)
