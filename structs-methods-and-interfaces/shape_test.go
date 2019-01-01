@@ -1,4 +1,4 @@
-package rectangle
+package shape
 
 import (
 	"math"
