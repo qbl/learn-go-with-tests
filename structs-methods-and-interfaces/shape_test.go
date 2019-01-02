@@ -9,9 +9,9 @@ import (
 
 const tolerance = .01
 
-var rectangle = Rectangle{10.0, 10.0}
-var circle = Circle{7.0}
-var triangle = Triangle{12, 6}
+var rectangle = Rectangle{Width: 10.0, Height: 10.0}
+var circle = Circle{Radius: 7.0}
+var triangle = Triangle{Base: 12, Height: 6}
 
 var opt = cmp.Comparer(func(x float64, y float64) bool {
 	diff := math.Abs(x - y)
@@ -41,9 +41,9 @@ func TestArea(t *testing.T) {
 		shape    Shape
 		expected float64
 	}{
-		{rectangle, 100.0},
-		{circle, 153.93},
-		{triangle, 36.0},
+		{shape: rectangle, expected: 100.0},
+		{shape: circle, expected: 153.93},
+		{shape: triangle, expected: 36.0},
 	}
 
 	for _, tt := range areaTests {
