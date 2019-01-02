@@ -11,6 +11,7 @@ const tolerance = .01
 
 var rectangle = Rectangle{10.0, 10.0}
 var circle = Circle{7.0}
+var triangle = Triangle{12, 6}
 
 var opt = cmp.Comparer(func(x float64, y float64) bool {
 	diff := math.Abs(x - y)
@@ -36,11 +37,16 @@ func TestArea(t *testing.T) {
 		}
 	}
 
-	t.Run("Area of a rectangle", func(t *testing.T) {
-		checkArea(t, rectangle, 100.00)
-	})
+	areaTests := []struct {
+		shape    Shape
+		expected float64
+	}{
+		{rectangle, 100.0},
+		{circle, 153.93},
+		{triangle, 36.0},
+	}
 
-	t.Run("Area of a circle", func(t *testing.T) {
-		checkArea(t, circle, 153.93)
-	})
+	for _, tt := range areaTests {
+		checkArea(t, tt.shape, tt.expected)
+	}
 }
