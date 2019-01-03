@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// ErrInsufficientFund describes error for insufficient wallet balance
 var ErrInsufficientFund = errors.New("insufficient balance")
 
 // Bitcoin is a sample custom type based on integer
