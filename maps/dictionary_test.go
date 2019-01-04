@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestSearch(t *testing.T) {
 	dictionary := Dictionary{"test": "this is just a test"}
@@ -13,14 +15,9 @@ func TestSearch(t *testing.T) {
 	})
 
 	t.Run("unknwon word", func(t *testing.T) {
-		_, err := dictionary.Search("unknown")
-		expected := "could not find the word you were looking for"
+		_, actual := dictionary.Search("unknown")
 
-		if err == nil {
-			t.Fatal("expected to get an error")
-		}
-
-		assertString(t, err.Error(), expected)
+		assertError(t, actual, ErrNotFound)
 	})
 }
 
@@ -28,5 +25,13 @@ func assertString(t *testing.T, actual, expected string) {
 	t.Helper()
 	if actual != expected {
 		t.Errorf("actual: %s; expected: %s", actual, expected)
+	}
+}
+
+func assertError(t *testing.T, actual, expected error) {
+	t.Helper()
+
+	if actual != expected {
+		t.Errorf("actual error: %s; expected: %s", actual, expected)
 	}
 }
