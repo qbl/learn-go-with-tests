@@ -2,8 +2,9 @@ package main
 
 // Various error types
 const (
-	ErrNotFound   = DictionaryErr("could not find the word you were looking for")
-	ErrWordExists = DictionaryErr("cannot add word because it already exists")
+	ErrNotFound      = DictionaryErr("could not find the word you were looking for")
+	ErrWordExists    = DictionaryErr("can not add word because it already exists")
+	ErrWordNotExists = DictionaryErr("can not update word because it does not exists")
 )
 
 // DictionaryErr is a custom type to describe errors
@@ -44,8 +45,19 @@ func (d Dictionary) Add(word, definition string) error {
 }
 
 // Update accepts word and definition, and update word's definition accordingly
-func (d Dictionary) Update(word, definition string) {
-	d[word] = definition
+func (d Dictionary) Update(word, definition string) error {
+	_, err := d.Search(word)
+
+	switch err {
+	case nil:
+		d[word] = definition
+	case ErrNotFound:
+		return ErrWordNotExists
+	default:
+		return err
+	}
+
+	return nil
 }
 
 func main() {}
