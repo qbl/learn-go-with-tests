@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"reflect"
 	"testing"
+	"time"
 )
 
 const sleep = "sleep"
@@ -20,6 +21,14 @@ func (c *CountdownOperationSpy) Sleep() {
 func (c *CountdownOperationSpy) Write(p []byte) (n int, err error) {
 	c.Calls = append(c.Calls, write)
 	return
+}
+
+type SpyTime struct {
+	duration time.Duration
+}
+
+func (s *SpyTime) Sleep(duration time.Duration) {
+	s.duration = duration
 }
 
 func TestCountdown(t *testing.T) {
@@ -57,4 +66,16 @@ Go!`
 			t.Errorf("expexted calls: %v; actual calls: %v", expected, spySleepPrinter.Calls)
 		}
 	})
+}
+
+func TestConfigurableSleeper(t *testing.T) {
+	sleepTime := 5 * time.Second
+
+	spyTime := &SpyTime{}
+	sleeper := ConfigurableSleeper{sleepTime, spyTime.Sleep}
+	sleeper.Sleep()
+
+	if spyTime.duration != sleepTime {
+		t.Errorf("should have slept for %v, but slept for %v", sleepTime, spyTime.duration)
+	}
 }

@@ -23,6 +23,17 @@ func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
 }
 
+// ConfigurableSleeper has duration and sleep
+type ConfigurableSleeper struct {
+	duration time.Duration
+	sleep    func(time.Duration)
+}
+
+// Sleep implements time.Sleep
+func (c *ConfigurableSleeper) Sleep() {
+	c.sleep(c.duration)
+}
+
 // Countdown accepts output buffer and sleeper interface, and prints the output buffer
 func Countdown(out io.Writer, sleeper Sleeper) {
 	for i := countdownStart; i > 0; i-- {
