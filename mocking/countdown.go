@@ -10,17 +10,31 @@ import (
 const finalWord = "Go!"
 const countdownStart = 3
 
+// Sleeper is an interface to function Sleep()
+type Sleeper interface {
+	Sleep()
+}
+
+// DefaultSleeper implements Sleeper
+type DefaultSleeper struct{}
+
+// Sleep implements time.Sleep()
+func (d *DefaultSleeper) Sleep() {
+	time.Sleep(1 * time.Second)
+}
+
 // Countdown accepts output buffer, and prints it
-func Countdown(out io.Writer) {
+func Countdown(out io.Writer, sleeper Sleeper) {
 	for i := countdownStart; i > 0; i-- {
-		time.Sleep(1 * time.Second)
+		sleeper.Sleep()
 		fmt.Fprintln(out, i)
 	}
 
-	time.Sleep(1 * time.Second)
+	sleeper.Sleep()
 	fmt.Fprint(out, finalWord)
 }
 
 func main() {
-	Countdown(os.Stdout)
+	sleeper := &DefaultSleeper{}
+	Countdown(os.Stdout, sleeper)
 }
