@@ -23,7 +23,7 @@ func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
 }
 
-// Countdown accepts output buffer, and prints it
+// Countdown accepts output buffer and sleeper interface, and prints the output buffer
 func Countdown(out io.Writer, sleeper Sleeper) {
 	for i := countdownStart; i > 0; i-- {
 		sleeper.Sleep()
